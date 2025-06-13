@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Research</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-4">
+  <h1 class="text-2xl font-bold mb-4">GitHub Research Assistant</h1>
+  <form id="start-form" class="space-y-2">
+    <input name="prompt" class="border w-full p-2" placeholder="Enter prompt" />
+    <label class="block"><input type="checkbox" name="skip" /> Skip Consultation</label>
+    <button type="submit" class="bg-blue-500 text-white px-3 py-1">Start</button>
+  </form>
+  <pre id="result" class="mt-4"></pre>
+  <script>
+    const form = document.getElementById('start-form');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const prompt = form.prompt.value;
+      const skip = form.skip.checked;
+      const res = await fetch('/start', {
+        method: 'POST',
+        headers: {'content-type':'application/json'},
+        body: JSON.stringify({prompt, skipConsultation: skip})
+      });
+      document.getElementById('result').textContent = await res.text();
+    });
+  </script>
+</body>
+</html>

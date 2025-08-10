@@ -1,0 +1,21 @@
+name = "gh-research-worker"
+compatibility_date = "2024-06-01"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "research_db"
+migrations_dir = "migrations"
+
+[[r2_buckets]]
+binding = "R2"
+bucket_name = "research-reports"
+
+[[kv_namespaces]]
+binding = "KV"
+id = "your-kv-id"
+preview_id = "your-preview-id"
+
+[vars]
+GITHUB_TOKEN = ""
+WEBHOOK_SECRET = ""

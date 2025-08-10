@@ -15,7 +15,9 @@ export default {
     const { pathname } = url
 
     if (req.method === 'POST' && pathname === '/start') {
-      const body = await req.json<any>()
+      // Define an interface for the request body, e.g., at the top of the file or in a types file:
+      // interface StartRequestBody { prompt?: string; skipConsultation?: boolean; /* any other fields */ }
+      const body = await req.json<StartRequestBody>();
       const prompt = body.prompt || ''
       const id = nanoid()
       const slug = slugify(id)
